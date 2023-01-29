@@ -9,7 +9,7 @@ x_eksenleri = {
     "c": 2
 }
 x_indexleri = [f" {x} " for x in x_eksenleri if x <= "C"]
-
+KILITLENME_DURUMU = ["X","O","X"]
 def sablon():
     print("0",end=" ")
     print(x_indexleri)
@@ -36,7 +36,41 @@ def tas_koy(tas_kordinat):
     else:
         kordinat_sistemi[int(tas_kordinat[0])-1][x_eksenleri[tas_kordinat[1]]] = "O"
     oyun_sira[0] += 1
-    
-while True:
+
+def oyun_bitti():
+    if oyun_sira[0]%2==1:
+        print("X oyunu kazandı. ")
+    else:
+        print("O oyunu kazandı. ")
+
+
+def kilitlenme():
+    for i in range(3):
+        kilitli_mi_dikey = []
+        kilitli_mi_çapraz = []
+        kilitli_mi_çapraz_1=[]
+
+        if kordinat_sistemi[i] == KILITLENME_DURUMU:#yatay
+            oyun_bitti()
+            return False
+        for n in range(3):
+            kilitli_mi_dikey.append(kordinat_sistemi[n][i])
+            kilitli_mi_çapraz.append(kordinat_sistemi[n][n])
+
+            for _ in range(2,-1,-1):
+                kilitli_mi_çapraz_1.append(kordinat_sistemi[n][_])
+
+        if kilitli_mi_dikey == KILITLENME_DURUMU:#dikey
+            oyun_bitti()
+            return False
+        elif kilitli_mi_çapraz == KILITLENME_DURUMU or kilitli_mi_çapraz_1==KILITLENME_DURUMU:#çapraz
+            oyun_bitti()
+            return False
+    return True
+
+on = True
+while on:
     sablon()
     tas_koy(tas_kordinat_iste())
+    on = kilitlenme()
+sablon()
