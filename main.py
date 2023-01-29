@@ -23,9 +23,9 @@ def tas_kordinat_iste():
         tas_kordinat = input("Lütfen O koymak istediğiniz yerin kordinatlarını yazınız ")
     while tas_kordinat[0] not in ["1","2","3"] and tas_kordinat[1].upper() not in x_indexleri:
         tas_kordinat = input("Tahtada olmayan bir konum girdiniz lütfen tekrar yazınız ")
-    while kordinat_sistemi[int(tas_kordinat[0])][x_eksenleri[tas_kordinat[1]]] != "   ":
+    while kordinat_sistemi[int(tas_kordinat[0])-1][x_eksenleri[tas_kordinat[1]]] != "   ":
         tas_kordinat = input("İlgili konumda başka bir taş var lütfen tekrar giriniz ")
-
+    
     return tas_kordinat
 
 def tas_koy(tas_kordinat):
