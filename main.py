@@ -11,8 +11,10 @@ x_eksenleri = {
 x_indexleri = [f" {x} " for x in x_eksenleri if x <= "C"]
 
 def sablon():
+    print("0",end=" ")
     print(x_indexleri)
     for i in range(3):
+        print(i+1,end=" ")
         print(kordinat_sistemi[i])
 
 
@@ -35,4 +37,6 @@ def tas_koy(tas_kordinat):
         kordinat_sistemi[int(tas_kordinat[0])-1][x_eksenleri[tas_kordinat[1]]] = "O"
     oyun_sira[0] += 1
     
-
+while True:
+    sablon()
+    tas_koy(tas_kordinat_iste())
